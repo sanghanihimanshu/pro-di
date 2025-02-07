@@ -28,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pegvin/pro-di.git"
+    "url": "git+https://github.com/sanghanihimanshu/pro-di.git"
   },
   "bugs": {
-    "url": "https://github.com/pegvin/pro-di/issues"
+    "url": "https://github.com/sanghanihimanshu/pro-di/issues"
   },
   "scripts": {
     "build": "tsc --build --force && tsc-alias",
