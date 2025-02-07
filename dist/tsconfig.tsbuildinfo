@@ -1,0 +1,1 @@
+{"root":["../index.ts","../vitest.config.ts","../src/binder.ts","../src/decorators.ts","../src/di-container.ts","../src/integrations.ts","../src/module.ts","../src/test/di.test.ts"],"version":"5.7.3"}
