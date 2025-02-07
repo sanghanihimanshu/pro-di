@@ -1,6 +1,6 @@
 {
   "name": "pro-di",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A professional DI container for Node.js/TypeScript inspired by Koin with global and request-based injection support for Hono and Express.",
   "author": "himanshu patel",
   "license": "MIT",
