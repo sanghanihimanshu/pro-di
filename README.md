@@ -28,15 +28,15 @@ npm install pro-di
 # or
 pnpm add pro-di
 ```
+
 ## Complete Example
 
 Here's a comprehensive example showing how to use pro-di:
 
-
 ```javascript
 // Define interfaces
-const IUserRepository = Symbol('IUserRepository');
-const IAuthService = Symbol('IAuthService');
+const IUserRepository = Symbol("IUserRepository");
+const IAuthService = Symbol("IAuthService");
 
 // implementations.js
 class UserRepository {
@@ -80,13 +80,13 @@ const isValid = authService.validateUser(someUser);
 ```
 
 This example demonstrates:
+
 - Interface definitions
 - Service decorators
 - Dependency injection
 - Container setup
 - Module registration
 - Service resolution
-
 
 <!--
 Check out our [documentation](link) to learn more! -->

@@ -1,12 +1,9 @@
-// src/decorators.ts
-
 import "reflect-metadata";
 
 import { GlobalDIContainer } from "./di-container";
+import { LifecycleHook } from "./lifecycle";
 
-//
 // Property Injection Decorators
-//
 
 /**
  * @Inject decorator injects a dependency from the global container.
@@ -40,7 +37,7 @@ export function OptionalInject(token: any): PropertyDecorator {
         try {
           return GlobalDIContainer.get(token);
         }
-        catch (e:any) {
+        catch (e: any) {
           console.warn(e.message);
           return undefined;
         }
@@ -51,14 +48,13 @@ export function OptionalInject(token: any): PropertyDecorator {
   };
 }
 
-//
 // Class Decorators for Automatic Registration
-//
 
 export interface ServiceOptions {
   token: any; // The token to register the class under.
   singleton?: boolean; // Defaults to true.
   priority?: number; // Registration priority (default: 0).
+  tags?: string[]; // Optional tags for service categorization
 }
 
 /**
@@ -79,6 +75,7 @@ export function Service(options: ServiceOptions): ClassDecorator {
       },
       singleton,
       priority,
+      options.tags,
     );
   };
 }
@@ -100,6 +97,36 @@ export function Factory(options: ServiceOptions): ClassDecorator {
       },
       false,
       priority,
+      options.tags,
     );
+  };
+}
+
+/**
+ * Lifecycle hook decorators
+ */
+export function Init(): MethodDecorator {
+  return (target, propertyKey) => {
+    if (propertyKey !== LifecycleHook.INIT) {
+      const original = target.constructor.prototype[LifecycleHook.INIT];
+      target.constructor.prototype[LifecycleHook.INIT] = async function (this: any) {
+        if (original)
+          await original.call(this);
+        await this[propertyKey]();
+      };
+    }
+  };
+}
+
+export function Destroy(): MethodDecorator {
+  return (target, propertyKey) => {
+    if (propertyKey !== LifecycleHook.DESTROY) {
+      const original = target.constructor.prototype[LifecycleHook.DESTROY];
+      target.constructor.prototype[LifecycleHook.DESTROY] = async function (this: any) {
+        if (original)
+          await original.call(this);
+        await this[propertyKey]();
+      };
+    }
   };
 }

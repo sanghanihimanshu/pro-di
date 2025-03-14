@@ -1,9 +1,17 @@
 {
   "name": "pro-di",
-  "version": "1.0.2",
+  "type": "module",
+  "version": "1.0.3",
   "description": "A professional DI container for Node.js/TypeScript inspired by Koin with global and request-based injection support for Hono and Express.",
   "author": "himanshu patel",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanghanihimanshu/pro-di.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sanghanihimanshu/pro-di/issues"
+  },
   "keywords": [
     "dependency-injection",
     "di",
@@ -15,23 +23,15 @@
     "hono",
     "decorators"
   ],
-  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
+    "LICENSE",
     "README.md",
-    "LICENSE"
+    "dist"
   ],
   "engines": {
     "node": ">=16.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sanghanihimanshu/pro-di.git"
-  },
-  "bugs": {
-    "url": "https://github.com/sanghanihimanshu/pro-di/issues"
   },
   "scripts": {
     "build": "tsc --build --force && tsc-alias",
@@ -42,6 +42,8 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/sdk-node": "^0.57.2",
     "express": "^4.21.2",
     "hono": "^4.6.20",
     "reflect-metadata": "^0.1.14"
